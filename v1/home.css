@@ -1,0 +1,39 @@
+/*originally stater-template.css*/
+body {
+	padding-top: 50px;
+}
+.content {
+	padding: 40px 15px;
+	/*text-align: center;*/
+}
+
+.boxed-content-main {
+	padding: 15px;
+	background-color: #e4e4e4;
+}
+
+/*to be used within a boxed-content-sub2 or boxed-content-main element*/
+.boxed-content-sub {
+	padding: 15px;
+	background-color: #d9d9d9;
+	margin-top: 10px;
+}
+
+/*to be used within a boxed-content-sub element*/
+.boxed-content-sub2 {
+	/*padding: 15px;*/
+	background-color: #e4e4e4;
+	margin-top: 10px;
+}
+
+.tab-content>.active{
+	padding-left: 0px;
+}
+
+textarea {
+	width: 100%;
+}
+
+.h1, .h2, .h3, h1, h2, h3{
+	margin-top: 0px;
+}
