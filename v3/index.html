@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<!-- initial base from https://material.io/components/web/docs/getting-started/ -->
+<html class="mdc-typography">
+
+<head>
+    <!-- last updated: April 25, 2018; https://github.com/BluuArc/bluuarc.github.io/tree/95325d040978b3197774b49dc022132006da43fa -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80417877-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-80417877-1');
+    </script>
+
+    <title>JCCC</title>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@0.35.2/dist/material-components-web.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/color-theme.css">
+    <link rel="stylesheet" href="css/breakpoints.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+    #loading-screen {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        
+        width: 100%;
+        height: 100%;
+        
+        background-color: var(--mdc-theme-primary);
+    }
+
+    #loading-screen .content {
+        margin: auto;
+        margin-top: 25%;
+        width: fit-content;
+        text-align: center;
+        color: var(--mdc-theme-text-primary-on-dark);
+    }
+
+    #error-loading-text {
+        display: none;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg)}
+        to { transform: rotate(359deg)}
+    }
+
+    .spinner {
+        background-color: inherit;
+    }
+
+    /* adapted from https://www.w3schools.com/howto/howto_css_loader.asp */
+    .outer {
+        border: 8px solid var(--mdc-theme-primary);
+        border-top: 8px solid var(--mdc-theme-secondary);
+        border-bottom: 8px solid var(--mdc-theme-secondary);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        margin: auto;
+        margin-left: calc(50% - 48px);
+        animation: rotate 2.5s linear infinite;
+    }
+
+    .spinner .inner {
+        border: inherit;
+        border-top: inherit;
+        border-bottom: inherit;
+        border-radius: inherit;
+        position: inherit;
+        animation: inherit;
+        
+        width: 34px;
+        height: 34px;
+    }
+
+    .spinner .inner .inner {
+        border: inherit;
+        border-top: inherit;
+        border-bottom: inherit;
+        border-radius: inherit;
+        position: inherit;
+        animation: inherit;
+        
+        width: 20px;
+        height: 20px;
+    }
+
+    .spinner .inner .inner .inner {
+        border: inherit;
+        border-top: inherit;
+        border-bottom: inherit;
+        border-radius: inherit;
+        position: inherit;
+        animation: inherit;
+        
+        width: 5px;
+        height: 5px;
+    }
+
+
+    </style>
+</head>
+
+<body class="mdc-typography">
+    <div id="loading-screen">
+        <div class="content">
+            <h1>Loading...</h1>
+            <div class="spinner-container">
+                <div class="ring"></div>
+                <div class="mask"></div>
+            </div>
+            
+            <div class="spinner outer">
+                <div class="inner">
+                    <div class="inner">
+                        <div class="inner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="error-loading-text">
+                If the page is taking too long to load, check your internet connection or disable your ad-blocker and reload.
+            </h2>
+        </div>
+        
+    </div>
+    <section id="nav-app">
+        <jccc-nav-header :pages="pages" v-on:pagechange="setPageTo" id="nav-header"></jccc-nav-header>
+    </section>
+    <section class="pages">
+        <div class="page active" id="home" role="tabpanel">
+            <floating-title-toolbar id="titleBar" :title="closestCard" v-on:changecard="setToolbarTitle"></floating-title-toolbar>
+
+            <card id="aboutMe">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">About Me</h1>
+                </section>
+                <section class="mdc-card__media xs-only" id="avatarImage"></section>
+                <div class="mdc-card__horizontal-block">
+                    <img class="mdc-card__media-item mdc-card__media-item--1x sm-plus" src="img/avatar.jpg">
+                    <section class="mdc-card__supporting-text text-center mdc-typography--body1">
+                        My name is Joshua Castor. I am a senior level undergraduate at UIC as of Fall 2017. I enjoy programming stuff, mainly in
+                        JavaScript, but I am open to learning other languages and technologies. My main interests include web development, visual
+                        analytics, and cybersecurity.
+                    </section>
+                </div>
+            </card>
+
+            <card id="projectStats">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Project Statistics</h1>
+                </section>
+                <section class="mdc-card__supporting-text text-center">
+                    Below you can see the language distribution across the <b>{{ projectData.count.total }} public projects</b> I've contributed to. I own {{ projectData.count.mine }} of those projects.
+                </section>
+                <section class="mdc-card__supporting-text">
+                    <language-section :project="projectData"></language-section>
+                </section>
+                <section class="mdc-card__actions">
+                    <a class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action" id="projectsBtn" href="./?link=Projects">See Projects</a>
+                </section>
+            </card>
+
+            <card id="workExperience">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Work Experience</h1>
+                </section>
+                <section class="mdc-card__supporting-text">
+                    <ul class="mdc-list mdc-list--theme-dark">
+                        <template v-for="job in workData">
+                            <li class="mdc-list-item jobEntry">
+                                <span class="mdc-list-item__text">
+                                    <div class="header-container">
+                                        <h2 class="mdc-typography--headline"><span id="name">{{ job.name }}</span></h2>
+                                        <h3 class="mdc-typography--title"><span id="time" class="mdc-list-item__end-detail">{{ job.time }}</span></h3>
+                                    </div>
+                                    
+                                    <h3 class="mdc-typography--title">
+                                        <span id="company">{{ job.company }}</span> | <span id="location">{{ job.location }}</span>
+                                    </h3>
+                                    
+                                    <p id="desc" v-html="job.desc"></p>
+                                </span>
+                                
+                            </li>
+                            <li role="separator" class="mdc-list-divider"></li>
+                        </template>
+                    </ul>
+                </section>
+            </card>
+
+            <card id="education">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Education</h1>
+                </section>
+                <div class="mdc-card__horizontal-block">
+                    <img class="mdc-card__media-item mdc-card__media-item--1dot5x" src="img/CAMP.CIRC.SM.WHT.PNG">
+                    <section class="mdc-card__supporting-text text-center">
+                        <b class="mdc-typography--title">University of Illinois at Chicago</b><br>
+                        <span class="mdc-typography--subheading1">BS in Computer Science<br>Fall 2015 - Fall 2018</span>
+                    </section>
+                </div>
+            </card>
+
+            <card id="coursework">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Coursework</h1>
+                </section>
+                <section class="mdc-card__supporting-text">
+                    <ul class="mdc-list mdc-list--theme-dark">
+                        <template v-for="course in courseData">
+                            <li class="mdc-list-item courseEntry">
+                                <span class="mdc-list-item__text">
+                                    <div class="header-container">
+                                        <h2 class="mdc-typography--headline"><span id="name">{{ course["Course Name"] }}</span></h2>
+                                        <h3 class="mdc-typography--title"><span id="time" class="mdc-list-item__end-detail">{{ course.Semester }}</span></h3>
+                                    </div>
+                                    <h3 class="mdc-typography--title">
+                                        <span id="lang-techs">{{ course["Languages/Technologies/Techniques"] }}</span>
+                                    </h3>
+                                </span>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+            </card>
+        </div>
+
+        <div class="page" id="projects" role="tabpanel">
+            
+            <!-- <card id="searchCard" class="mdc-theme--dark">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Search Options</h1>
+                </section>
+                <section class="mdc-card__supporting-text text-center mdc-typography--body1">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 text-left">
+                                <h2>Name Filter</h2>
+                            </div>
+                            <div class="mdc-layout-grid__cell text-left">
+                                <radio-button value="contains" actualname="Contains" groupname="nameMode"></radio-button>
+                            </div>
+                            <div class="mdc-layout-grid__cell text-left">
+                                <radio-button value="is-exactly" actualname="Is exactly" groupname="nameMode"></radio-button>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                <name-search v-on:namechange="setNameFilter"></name-search>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 text-left">
+                                <h2>Language Filter</h2>
+                            </div>
+                            <template v-for="language in projectData.overall.languages">
+                                <div class="mdc-layout-grid__cell text-left">
+                                    <language-checkbox :language="language.name" v-on:addlanguage="addLanguageFilter" v-on:removelanguage="removeLanguageFilter"></language-checkbox>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    
+                </section>
+                <section class="mdc-card__actions">
+                    <button class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action" id="searchBtn" @click="search">Search</button>
+                </section>
+            </card> -->
+
+            <card id="overview">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Profile Overview</h1>
+                </section>
+                <div class="mdc-layout-grid" v-if="projectData.user">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 text-center">
+                            <img class="mdc-card__media-item" :src="projectData.user.avatar_url">
+                        </div>
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                            <section class="mdc-card__supporting-text text-center">
+                                <h3>{{ projectData.user.name }} ({{projectData.user.login }})</h3>
+                                <p>GitHub user since <b>{{ getFormattedDate(projectData.user.created_at) }}</b></p>
+                                <p>Contributed to at least <b>{{ projectData.overall.count.total }} projects</b>, owning {{ projectData.overall.count.mine }} of them.</p>
+                                <p>{{ projectData.user.followers }} follower(s) and following {{ projectData.user.following }} user(s)</p>
+                                <p>User information last updated {{ getFormattedDate(projectData.user.updated_at) }}</p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <section class="mdc-card__supporting-text text-center" v-else>
+                    Below you can see the language distribution across the <b>{{ projectData.overall.count.total }} public projects</b> I've contributed to. I own {{ projectData.overall.count.mine }} of those projects.
+                </section>
+                <section class="mdc-card__supporting-text">
+                    <language-section :languages="projectData.overall.languages"></language-section>
+                </section>
+            </card>
+
+            <card class="projectEntry" v-for="(project,key) in projectData.projects">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">{{ project.name }}</h1>
+                </section>
+                <section class="mdc-card__supporting-text text-center">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 text-left" id="description">
+                                <h3>Description</h3>
+                                <span v-if="project.description">{{ project.description }}</span>
+                                <span v-else>No project description found</span>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 text-left" id="project-info">
+                                <h3>Project Information</h3>
+                                <p><b>Owner: </b> {{ project.owner }}</p>
+                                <p><b>Created: </b>{{ getFormattedDate(project.createdAt) }}</p>
+                                <p><b>Last Commit: </b>{{ getFormattedDate(project.lastPushedAt) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mdc-card__supporting-text">
+                    <language-section :project="project"></language-section>
+                </section>
+                <section class="mdc-card__actions">
+                    <a :href="project.repoURL" class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action">Code Repository</a>
+                    <a v-if="project.homepageURL" :href="project.homepageURL" class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action">Project Page</a>
+                </section>
+            </card>
+           
+        </div>
+
+        <div class="page" id="contact" role="tabpanel">
+            <div class="mdc-grid-list text-center">
+                <ul class="mdc-grid-list__tiles">
+                    <template v-for="entry in links">
+                        <li class="mdc-grid-tile">
+                            <a :href="entry.link" target="_blank">
+                                <div class="mdc-grid-tile__primary" :style="{ backgroundColor: entry.bgColor }">
+                                    <img class="mdc-grid-tile__primary-content" :src="entry.icon" />
+                                </div>
+                                <span class="mdc-grid-tile__secondary">
+                                    <span class="mdc-grid-tile__title">{{ entry.name }}</span>
+                                </span>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page" id="error" role="tabpanel">
+            <card>
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">Error: Section Not Found</h1>
+                </section>
+                <section class="mdc-card__supporting-text text-center mdc-typography--body1">
+                    The page you requested cannot be found.
+                </section>
+            </card>
+        </div>
+    </section>
+
+    <script>
+        setTimeout(() => {
+
+            // show error after 10s
+            let error_text = document.getElementById('error-loading-text');
+            error_text.style.display = 'block';
+        }, 10000);
+    </script>
+    
+    <script src="https://unpkg.com/material-components-web@0.35.2/dist/material-components-web.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    
+    <script src="js/app.js"></script>
+    
+    <script>
+        window.mdc.autoInit();
+        $(document).ready(() => {
+            jcccApp.init()
+                .then(() => {
+                    $("#loading-screen").fadeOut(250);
+                });
+        });
+    </script>
+
+    <noscript>
+        <div class="statcounter">
+            <a title="shopify site analytics" target="_blank" href="http://statcounter.com/shopify/">
+                <img class="statcounter" alt="shopify site analytics" src="//c.statcounter.com/11034084/0/3e7dba9f/1/">
+            </a>
+        </div>
+    </noscript>
+    <script id="statcounter-tracker">
+        //globals for statcounter tracker
+        var sc_project = sc_project || 11034084;
+        var sc_invisible = sc_invisible || 1;
+        var sc_security = sc_security || "3e7dba9f";
+        var scJsHost = scJsHost || (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+
+        //pure javascript version of appending a script
+        //based off of https://howchoo.com/g/mmu0nguznjg/learn-the-slow-and-fast-way-to-append-elements-to-the-dom
+        function appendScript(url) {
+            return new Promise(function (fulfill, reject) {
+                let e = document.createElement('script');
+                e.src = url;
+                e.onload = () => { fulfill(); };
+                e.onerror = reject;
+                document.body.appendChild(e);
+            });
+        }
+
+        appendScript(`${scJsHost}statcounter.com/counter/counter.js`);
+    </script>
+
+
+</body>
+
+</html>

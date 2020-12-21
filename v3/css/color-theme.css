@@ -1,0 +1,13 @@
+:root {
+    --mdc-theme-primary: #375A7F;
+    --mdc-theme-primary-light: #6687af;
+    --mdc-theme-primary-dark: #003152;
+
+    --mdc-theme-secondary: #f57f17;
+    --mdc-theme-secondary-light: #ffb04c;
+    --mdc-theme-secondary-dark: #bc5100;
+
+    --mdc-theme-background: #303030;
+    --mdc-theme-background-dark: #222;
+    --mdc-theme-background-light: #444;
+}
