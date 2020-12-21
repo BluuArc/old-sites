@@ -22,7 +22,7 @@ function printHeader(activeTab){
 
   //print links
   var list = [
-      "Projects", "./home.html",
+      "Projects", "./index.html",
       "About", "./about.html",
       "Contact", "./contact.html"
   ]
