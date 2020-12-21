@@ -1,0 +1,58 @@
+.img-round-corners {
+    border-radius: 10px;
+}
+
+.card {
+    margin-bottom: 25px;
+}
+
+#courseworkCard>div.card-block {
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    #courseworkCard>div.card-block {
+        overflow-x: scroll;
+    }
+}
+
+.bg-secondary {
+    background-color: #444 !important;
+    border-color: #444;
+}
+
+#workExperienceCard>ul>li {
+    padding-bottom: 0;
+}
+
+/* mobile */
+
+@media (max-width: 767px) {
+    #projectStatsCard .languageEntry {
+        border-bottom: dimgray 1px solid;
+    }
+    #projectStatsCard .languageEntry:last-child {
+        border-bottom: transparent 1px solid;
+    }
+}
+
+#projectStatsCard #languages {
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+#projectStatsCard .languageCircle {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: white 1px solid;
+    /* make parent have relative positioning for vertical centering */
+    position: absolute;
+    top: 50%;
+    margin-top: -7.5px;
+    /* margin-left: -7.5px; */
+}
+
+#projectStatsCard #languages .col-1 {
+    position: relative;
+}

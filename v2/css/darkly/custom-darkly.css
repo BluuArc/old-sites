@@ -1,0 +1,71 @@
+/* Contains custom changes for original darkly theme */
+/* Original darkly theme can be found here: https://bootswatch.com/4-alpha/darkly/ */
+
+/* .navbar-nav .nav-item.active {
+    color: white;
+    padding-left: 2rem;
+} */
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767px) {
+    .navbar-nav .nav-item.active {
+        color: white;
+        padding-left: 2rem;
+        margin-left: -1rem !important;
+        margin-right: -2rem;
+        background: rgb(51, 77, 105);
+    }
+
+    .navbar-nav {
+        margin-top: 5px;
+    }
+
+    .navbar-nav .nav-item+.nav-item,
+    .navbar-nav .nav-item {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-nav .nav-item.active {
+        color: white;
+        padding-left: 2rem;
+        margin-left: -1rem !important;
+        margin-right: -2rem;
+        background: rgb(51, 77, 105);
+    }
+
+    .navbar-nav {
+        margin-top: 5px;
+    }
+
+    .navbar-nav .nav-item+.nav-item,
+    .navbar-nav .nav-item {
+        margin-left: 1rem;
+    }
+}
+
+.navbar-nav .nav-item+.nav-item>.nav-link, .navbar-inverse .navbar-nav .nav-link {
+    color: #BBB;
+}
+
+.navbar-nav .nav-item+.nav-item.active>.nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-item+.nav-item>.nav-link:hover {
+    color: #00bc8c;
+}
+
+thead.thead-inverse>tr>th {
+    color: #fff;
+}
+
+hr {
+    border-color: rgba(255,255,255,0.75);
+}
+
+.bg-secondary {
+    background-color: #444;
+    border-color: #444;
+}

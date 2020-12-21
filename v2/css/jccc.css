@@ -1,0 +1,54 @@
+div.body-content {
+    margin-top: 100px;
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767px) {
+    .md-only, .lg-only, .md-plus, .lg-plus {
+        display: none;
+        pointer-events: none;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (min-width: 768px) {
+    .lg-plus, .sm-minus {
+        display: none;
+        pointer-events: none;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .sm-only, .lg-only, .sm-minus, .md-minus {
+        display: none;
+        pointer-events: none;
+    }
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (min-width: 992px) {
+    .sm-only, .md-only {
+        display: none;
+        pointer-events: none;
+    }
+}
+
+.navicon { 
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#mainNavbarContainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+#mainNavbar { 
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}

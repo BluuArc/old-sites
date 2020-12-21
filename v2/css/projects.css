@@ -1,0 +1,66 @@
+.projectEntry .card-block {
+    border-bottom: gray 1px solid;
+}
+
+.projectEntry .card-block:last-child {
+    border-bottom: transparent 1px solid;
+}
+
+/* desktop */
+@media (min-width: 768px) {
+    .projectEntry #project-statistics {
+        border-left: dimgray 1px solid;
+    }
+}
+
+/* mobile */
+@media (max-width: 767px) {
+    .projectEntry #project-statistics {
+        border-top: dimgray 1px solid;
+        padding-top: 5px;
+    }
+
+    .projectEntry .languageEntry,
+    #overviewCard .languageEntry {
+        border-bottom: dimgray 1px solid;
+    }
+
+    .projectEntry .languageEntry:last-child,
+    #overviewCard .languageEntry:last-child {
+        border-bottom: transparent 1px solid;
+    }
+
+    #overviewCard .card-text {
+        text-align: center !important;
+    }
+}
+
+.projectEntry #languages,
+#overviewCard #languages {
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+.projectEntry .languageCircle,
+#overviewCard .languageCircle {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: white 1px solid;
+
+    /* make parent have relative positioning for vertical centering */
+    position: absolute;
+    top: 50%;
+    margin-top: -7.5px;
+    /* margin-left: -7.5px; */
+}
+
+.projectEntry #languages .col-1,
+#overviewCard #languages .col-1{
+    position: relative;
+}
+
+.projectEntry #repoURLContainer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
