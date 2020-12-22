@@ -1,0 +1,77 @@
+[
+  {
+    "Course Name": "Program Design I (CS111)",
+    "Languages/Technologies/Techniques": "Java",
+    "Semester": "Fall 2015"
+  },
+  {
+    "Course Name": "Program Design II (CS141)",
+    "Languages/Technologies/Techniques": "C, C++",
+    "Semester": "Spring 2016"
+  },
+  {
+    "Course Name": "Mathematical Foundations of Computing (CS151)",
+    "Languages/Technologies/Techniques": "Tarski's World",
+    "Semester": "Spring 2016"
+  },
+  {
+    "Course Name": "Programming Practicum (CS211)",
+    "Languages/Technologies/Techniques": "C, Java",
+    "Semester": "Fall 2016"
+  },
+  {
+    "Course Name": "Data Structures (CS251)",
+    "Languages/Technologies/Techniques": "C, C++",
+    "Semester": "Fall 2016"
+  },
+  {
+    "Course Name": "Machine Organization (CS261)",
+    "Languages/Technologies/Techniques": "C, y86",
+    "Semester": "Fall 2016"
+  },
+  {
+    "Course Name": "Languages and Automata (CS301)",
+    "Languages/Technologies/Techniques": "JFLAP",
+    "Semester": "Spring 2017"
+  },
+  {
+    "Course Name": "Programming Language Design and Implementation (CS341)",
+    "Languages/Technologies/Techniques": "C++, F#, C#, SQL",
+    "Semester": "Spring 2017"
+  },
+  {
+    "Course Name": "Software Design (CS342)",
+    "Languages/Technologies/Techniques": "Java, Raspberry Pi, Node.js, design patterns",
+    "Semester": "Spring 2017"
+  },
+  {
+    "Course Name": "Computer Systems (CS361)",
+    "Languages/Technologies/Techniques": "C, pipelining, threading",
+    "Semester": "Spring 2017"
+  },
+  {
+    "Course Name": "Computer Design (CS362)",
+    "Languages/Technologies/Techniques": "C, Arduino",
+    "Semester": "Fall 2017"
+  },
+  {
+    "Course Name": "Communication and Ethical Issues in Computing (CS377)",
+    "Languages/Technologies/Techniques": "",
+    "Semester": "Fall 2017"
+  },
+  {
+    "Course Name": "Software Engineering I (CS440)",
+    "Languages/Technologies/Techniques": "Requirements Analysis, UML Diagrams",
+    "Semester": "Fall 2017"
+  },
+  {
+    "Course Name": "Computer Algorithms I (CS401)",
+    "Languages/Technologies/Techniques": "Algorithm Analysis",
+    "Semester": "Fall 2017"
+  },
+  {
+    "Course Name": "Undergraduate Research (CS398)",
+    "Languages/Technologies/Techniques": "JavaScript, D3.js, Leaflet",
+    "Semester": "Fall 2017"
+  }
+]

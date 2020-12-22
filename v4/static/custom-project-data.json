@@ -1,0 +1,28 @@
+{
+    "ignoredProjects": [
+        "BluuArc/hello-world",
+        "BluuArc/frontend-nanodegree-resume",
+        "BluuArc/DBReader",
+        "BluuArc/lab-test",
+        "acm-uic/ACM-BACKEND",
+        "BluuArc/FileIndexer",
+        "uicsystems/lab-1-S17-BluuArc",
+        "uicsystems/lab-2S17-BluuArc",
+        "uicsystems/lab-3S17-BluuArc",
+        "uicsystems/lab-4S17-BluuArc",
+        "uicsystems/lab-5S17-BluuArc",
+        "uicsystems/lab-6-S17-BluuArc",
+        "bitslab/firefox-api-blocking-extension-scripts",
+        "BluuArc/bfmt-data-helper",
+        "BluuArc/bfmt-data",
+        "BluuArc/rfeh-build-examples",
+        "BluuArc/rfeh-helper",
+        "BluuArc/a-cyc-dashboard"
+    ],
+    "additionalProjectInfo": {
+
+    },
+    "additionalProjects": {
+
+    }
+}
